@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books
+  has_many :favorites
   attachment :profile_image, destroy: false
 
   validates :name, presence: true, uniqueness: true, length: {maximum: 20, minimum: 2}
