@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @book_new = Book.new
+    @book = Book.new
     @user = User.find_by(id: current_user.id)
   end
 

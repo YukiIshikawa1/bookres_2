@@ -4,13 +4,14 @@ before_action :ensure_correct_user, only: [:update, :destroy, :edit ]
   def show
     @books = Book.all
     @book_new = Book.new
+    @comment = BookComment.new
     @book = Book.find(params[:id])
     @user = User.find(@book.user.id)
   end
 
   def index
     @books = Book.all
-    @book_new = Book.new
+    @book = Book.new
     @user = User.find(current_user.id)
   end
 
