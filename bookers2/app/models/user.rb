@@ -8,25 +8,25 @@ class User < ApplicationRecord
   has_many :book_comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
 
-has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-has_many :follower_user, through: :follower, source: :followed
-has_many :followed_user, through: :followed, source: :follower
+has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+has_many :followings, through: :active_relationships, source: :followed
+has_many :followers, through: :passive_relationships, source: :follower
 
 # model/user.rb
 # ユーザーをフォローする
 def follow(user_id)
-  follower.create(followed_id: user_id)
+  active_relationships.create(followed_id: user_id)
 end
 
 # ユーザーのフォローを外す
 def unfollow(user_id)
-  follower.find_by(followed_id: user_id).destroy
+  active_relationships.find_by(followed_id: user_id).destroy
 end
 
 # フォロー確認をおこなう
 def following?(user)
-  follower_user.include?(user)
+  followings.include?(user)
 end
 
   attachment :profile_image, destroy: false

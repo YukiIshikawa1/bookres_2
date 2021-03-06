@@ -1,3 +1,5 @@
+<h1>Follower Users</h1>
+<% if  @users.present? %>
 <table class='table'>
     <tr>
       <th>image</th>
@@ -6,17 +8,23 @@
       <th></th>
       <th></th>
     </tr>
-      <% @user.follower_user.each do |user| %>
+      <% @users.each do |user| %>
       <tr>
           <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
        <td>
          <%= user.name %>
        </td>
-       <td><p>フォロー数：<%= user.follower_user.count %></p></td>
-       <td><p>フォロワー数：<% user.followed_user.count %></p></td>
+       <td><p>フォロー数：<%= user.followings.count %></p></td>
+       <td><p>フォロワー数：<%= user.followers.count %></p></td>
        <td>
          <%= link_to 'show', user_path(user) %>
        </td>
        </tr>
       <% end %>
+      
+      <% else %>
+
+       <h4>ユーザーはいません。</h4>
+
+     <% end %>
 </table>
