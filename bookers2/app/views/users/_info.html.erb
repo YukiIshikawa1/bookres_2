@@ -11,8 +11,8 @@
   <tr>
     <th>follows</th>
     <th>
-      <%= link_to following_user_path(user) do %>
-      <%= user.following_user.count %>
+      <%= link_to follows_user_path(user) do %>
+      <%= user.follower_user.count %>
       <% end %>
     </th>
   </tr>
@@ -30,7 +30,12 @@
 <div class='row'>
   <% if current_user == user %>
     <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+  <% end %>
+  <% if current_user != user %>
+  <% if current_user.following?(user) %>
+      <%= link_to 'フォロー外す', destroy_path(user.id), method: :POST ,class: "btn btn-outline-secondary"  %>
   <% else %>
-    <%= link_to 'フォローする',class: "btn btn-sm btn-success"  %>
+      <%= link_to 'フォローする', create_path(user.id), method: :POST %>
+  <% end %>
   <% end %>
 </div>
