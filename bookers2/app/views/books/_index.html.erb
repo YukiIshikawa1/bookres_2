@@ -22,8 +22,8 @@
             <%= render 'favorites/favorite', book: book %>
           </div>
         </td>
-         <td>
-           <p>コメント<%= book.book_comments.count %>件</p>
+         <td class='comment_count_<%= book.id %>'>
+           <%= render 'book_comments/comments_count', book: book %> 
          </td>
       </tr>
     <% end %>
