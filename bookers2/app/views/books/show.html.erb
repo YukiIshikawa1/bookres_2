@@ -8,28 +8,16 @@
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <tr>
-  		    <td><%= link_to user_path(@book.user) do %>
-            <%= attachment_image_tag(@book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %><br>
-            <%= @book.user.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @book.title, book_path(@book) %></td>
-          <td><%= @book.body %></td>
-          <td id="book_favorite_<%= @book.id %>">
-              <%= render 'favorites/favorite', book: @book %>
-          </td>
-          <% if current_user == @book.user %>
-          <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-          <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-          <% end %>
-          <td>コメント数:  <%= @book.book_comments.count %></td>
-        </tr>
-      </table>
-      <div class="comment">
-      <%= render 'book_comment/comment',  book: @book ,book_comment: @comment %>
+
+
+      <div id="comments_area">
+        <%= render partial: 'book_comments/index', locals: { comments: @comments, book: @book } %>
       </div>
+
+      <div class="comment-create">
+        <%= render  partial: 'book_comments/comments',locals: { book: @book ,comment: @comment } %>
+      </div>
+
        </div>
     </div>
   </div>
