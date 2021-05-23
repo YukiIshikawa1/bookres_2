@@ -17,3 +17,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+$(function() {
+$('.user-index').mouseover(function(){
+  $('h6').html('<p>詳細</p>');
+});
+
+});

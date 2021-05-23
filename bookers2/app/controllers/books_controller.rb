@@ -23,7 +23,7 @@ before_action :ensure_correct_user, only: [:update, :destroy, :edit ]
     else
       @user = User.find(current_user.id)
       @books = Book.all
-      render 'index'
+      render "index"
     end
   end
 
