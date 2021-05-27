@@ -18,8 +18,15 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
-$('.user-index').mouseover(function(){
-  $('h6').html('<p>詳細</p>');
-});
 
-});
+    $('#attachments').hover(
+      function(){
+        $('.followers').fadeIn()
+        $('.followinds').fadeIn()
+      },
+      function(){
+        $('.followers').fadeOut()
+        $('.followinds').fadeOut()
+      }
+     )
+})

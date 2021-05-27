@@ -10,12 +10,11 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-    <div class=btn></div>
       <tr>
-        <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+        <td id="attachments"><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
         <td><p><%= user.name %></p></td>
-       <td><p>フォロー数：<%= user.followings.count %></p></td>
-       <td><p>フォロワー数：<%= user.followers.count %></p></td>
+       <td><p class="followers">フォロー数：<%= user.followings.count %></p></td>
+       <td><p class="followinds">フォロワー数：<%= user.followers.count %></p></td>
         <td>
           <% if current_user != user %>
           <% if current_user.following?(user) %>
